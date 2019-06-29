@@ -21,6 +21,24 @@ class NotificationController {
 
     return res.json(notifications);
   }
+
+  async store(req, res) {
+    const { user } = await Notification.findById(req.params.id);
+
+    if (req.userId !== user) {
+      return res.status(401).json({ error: 'You are not allowed to do this.' });
+    }
+
+    const notification = await Notification.findByIdAndUpdate(
+      req.params.id,
+      {
+        read: true,
+      },
+      { new: true }
+    );
+
+    return res.json(notification);
+  }
 }
 
 export default new NotificationController();
