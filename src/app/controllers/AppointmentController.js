@@ -62,6 +62,12 @@ class AppointmentController {
       });
     }
 
+    if (isProvider.id === req.userId) {
+      return res
+        .status(400)
+        .json({ error: `You can't create appointments with yourself.` });
+    }
+
     /**
      * Check if date is past
      */
