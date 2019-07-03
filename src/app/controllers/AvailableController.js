@@ -5,9 +5,9 @@ import {
   setMinutes,
   setSeconds,
   isAfter,
+  format,
 } from 'date-fns';
 import { Op } from 'sequelize';
-import { format } from 'upath';
 import Appointment from '../models/Appointment';
 
 class AvailableController {
